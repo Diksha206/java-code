@@ -1,32 +1,26 @@
-package com.inheritance;
-class Car
-{
-	int carspeed=50;
-	int carno=4356;
-	String carcolor="Red";
-	float carprice=9656748.7f;
-	void Display()
-	{
-		System.out.println("Car speed is:"+carspeed);
-		System.out.println("car no is:"+carno);
-		System.out.println("car color is: "+carcolor);
-		System.out.println("car price is:"+carprice);
+package Demo;
+//Superclass
+class Animal {
+	void eat() {
+		System.out.println("Animal is eating");
 	}
 }
-	class Fortuner extends Car
-	{
-		void display()
-		{
-			System.out.println("I am Fortuner");
-		}
-	}
-public class Singleinheritance {
-	
 
-	public static void main(String[] Args)
-	{
-		Fortuner f1=new Fortuner();
-		f1.Display();
-		f1.display();
+//Subclass (Single Inheritance)
+class Dog extends Animal {
+	void bark() {
+		System.out.println("Dog is barking");
+	}
+}
+
+public class Singleinheritance {
+	public static void main(String[] args) {
+		Dog myDog = new Dog();
+
+		// Accessing superclass method
+		myDog.eat(); // Output: Animal is eating
+
+		// Accessing subclass method
+		myDog.bark(); // Output: Dog is barking
 	}
 }
