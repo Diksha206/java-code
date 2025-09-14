@@ -1,49 +1,57 @@
-package diksha;
+package com.inheritance;
 
 import java.util.Scanner;
-class Product
-{
-	int id;
-	String Name;
-	float Price;
-	static String Category;
-	
-	static
-	{
-		Category="Electronic";
-		System.out.println("Category is:"+Category);
-	}
-	
-	Product(int id,String Name,float Price)
-	{
-	this.id=id;
-	this.Name=Name;
-	this.Price=Price;
-	}
-	
-	void display()
-	{
-		System.out.println("Product id id:"+id);
-		System.out.println("Product Name is:"+Name);
-		System.out.println("Product Category is:"+Price);
-	}
-	
-}
-public class Main {
 
-	public static void main(String[] args)
-	{
-		Scanner s = new Scanner(System.in);
-		Scanner sc=new Scanner(System.in);
-		System.out.println("Enter the Product id :");
-		int id=sc.nextInt();
-		System.out.println("Enter the Product Name:");
-		String Name=sc.next();
-		System.out.println("Enter the Product Price:");		
-		float Price=sc.nextFloat();
-		
-		Product p= new Product(id,Name,Price);
-		p.display();
-		s.close();
-	}
+abstract class Staff {
+    protected int id;
+    protected String name;
+
+    public Staff(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+}
+
+class OfficeStaff extends Staff {
+    private String department;
+
+    public OfficeStaff(int id, String name, String department) {
+        super(id, name);
+        this.department = department;
+    }
+
+    public void displayDetails() {
+        System.out.println("ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Department: " + department);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of OfficeStaff objects: ");
+        int n = scanner.nextInt();
+
+        OfficeStaff[] officeStaff = new OfficeStaff[n];
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("Enter details for OfficeStaff " + (i + 1));
+            System.out.print("ID: ");
+            int id = scanner.nextInt();
+            System.out.print("Name: ");
+            String name = scanner.next();
+            System.out.print("Department: ");
+            String department = scanner.next();
+
+            officeStaff[i] = new OfficeStaff(id, name, department);
+        }
+
+        System.out.println("\nOfficeStaff Details:");
+        for (OfficeStaff staff : officeStaff) {
+            staff.displayDetails();
+            System.out.println();
+        }
+    }
 }
