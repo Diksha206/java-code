@@ -1,57 +1,60 @@
-package com.inheritance;
+package Demo;
+	import java.util.Scanner;
 
-import java.util.Scanner;
+	class StudentInfo {
+	    int rollno;
+	    String name;
+	    String className;
+	    double percentage;
 
-abstract class Staff {
-    protected int id;
-    protected String name;
+	    public StudentInfo(int rollno, String name, String className, double percentage) {
+	        this.rollno = rollno;
+	        this.name = name;
+	        this.className = className;
+	        this.percentage = percentage;
+	    }
 
-    public Staff(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-}
+	    public void displayInfo() {
+	        System.out.println("Roll No: " + rollno);
+	        System.out.println("Name: " + name);
+	        System.out.println("Class: " + className);
+	        System.out.println("Percentage: " + percentage + "%");
+	    }
+	}
 
-class OfficeStaff extends Staff {
-    private String department;
+	class StudentPer {
+	    public static double calculatePercentage(int[] marks) {
+	        int totalMarks = 0;
+	        for (int mark : marks) {
+	            totalMarks += mark;
+	        }
+	        return (double) totalMarks / marks.length;
+	    }
+	}
 
-    public OfficeStaff(int id, String name, String department) {
-        super(id, name);
-        this.department = department;
-    }
+	public class Main {
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
 
-    public void displayDetails() {
-        System.out.println("ID: " + id);
-        System.out.println("Name: " + name);
-        System.out.println("Department: " + department);
-    }
-}
+	        System.out.print("Enter roll number: ");
+	        int rollno = scanner.nextInt();
+	        scanner.nextLine(); // Consume newline
 
-public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+	        System.out.print("Enter name: ");
+	        String name = scanner.nextLine();
 
-        System.out.print("Enter the number of OfficeStaff objects: ");
-        int n = scanner.nextInt();
+	        System.out.print("Enter class: ");
+	        String className = scanner.nextLine();
 
-        OfficeStaff[] officeStaff = new OfficeStaff[n];
+	        int[] marks = new int[6];
+	        System.out.println("Enter marks for 6 subjects:");
+	        for (int i = 0; i < 6; i++) {
+	            marks[i] = scanner.nextInt();
+	        }
 
-        for (int i = 0; i < n; i++) {
-            System.out.println("Enter details for OfficeStaff " + (i + 1));
-            System.out.print("ID: ");
-            int id = scanner.nextInt();
-            System.out.print("Name: ");
-            String name = scanner.next();
-            System.out.print("Department: ");
-            String department = scanner.next();
+	        double percentage = StudentPer.calculatePercentage(marks);
 
-            officeStaff[i] = new OfficeStaff(id, name, department);
-        }
-
-        System.out.println("\nOfficeStaff Details:");
-        for (OfficeStaff staff : officeStaff) {
-            staff.displayDetails();
-            System.out.println();
-        }
-    }
-}
+	        StudentInfo student = new StudentInfo(rollno, name, className, percentage);
+	        student.displayInfo();
+	    }
+	}
