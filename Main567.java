@@ -1,52 +1,27 @@
-package com.inheritance;
+package Demo3;
 
 
-interface ProductInterface {
+
+class Animal {
+ void sound() {
+     System.out.println("Animal makes a sound");
+ }
 }
 
-class Product implements ProductInterface {
-	private int productId;
-	private String productName;
-	private double productCost;
-	private int productQuantity;
-	private static int objectCount = 0;
 
-	public Product() {
-		productId = 0;
-		productName = "NO name";
-		productCost = 0.0;
-		productQuantity = 0;
-		objectCount++;
-	}
-
-	public Product(int productId, String productName, double productCost, int productQuantity) {
-		this.productId = productId;
-		this.productName = productName;
-		this.productCost = productCost;
-		this.productQuantity = productQuantity;
-		objectCount++;
-	}
-
-	public void displayProduct() {
-		System.out.println("Product ID: " + productId);
-		System.out.println("Product Name: " + productName);
-		System.out.println("Product Cost: " + productCost);
-		System.out.println("Product Quantity: " + productQuantity);
-	}
-
-	public static int getObjectCount() {
-		return objectCount;
-	}
+class Dog extends Animal {
+ @Override
+ void sound() {
+     System.out.println("Dog barks");
+ }
 }
 
-public class Main567{
-	public static void main(String[] args) {
-		Product product1 = new Product();
-		Product product2 = new Product(101, "Laptop", 50000.0, 10);
+public class Main567 {
+ public static void main(String[] args) {
+     Animal myAnimal = new Animal(); 
+     Animal myDog = new Dog();       
 
-		product1.displayProduct();
-		product2.displayProduct();
-
-		System.out.println("Total Product Objects: " + Product.getObjectCount());
-	}
+     myAnimal.sound(); 
+     myDog.sound();      
+ }
 }
